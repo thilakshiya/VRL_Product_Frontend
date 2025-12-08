@@ -1,0 +1,62 @@
+.support-container {
+  max-width:max-content;
+  margin: auto;
+  padding: 30px 20px;
+  background: white;
+  color: #202227;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+  line-height: 1.7;
+}
+
+.support-title {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  color: #1d1616;
+  margin-bottom: 10px;
+}
+
+.support-subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: #101113;
+  margin-bottom: 25px;
+}
+
+.support-section {
+  margin-bottom: 28px;
+}
+
+.support-section h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: #1d1a1a;
+}
+
+.support-section p,
+.support-section li {
+  color: #1f2020;
+  font-size: 16px;
+}
+
+.support-section ul {
+  padding-left: 20px;
+}
+
+.support-section ul li {
+  margin-bottom: 8px;
+}
+
+.faq-list li {
+  margin-bottom: 15px;
+}
+
+.faq-list strong {
+  color: #131010;
+}
+
+.faq-list p {
+  margin-top: 5px;
+  color: #191b1d;
+}

@@ -1,0 +1,193 @@
+/* GENERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+.about-container {
+  width: 100%;
+  padding-bottom: 40px;
+  color: #222;
+}
+
+/* ------------ HEADER ------------ */
+.about-header {
+  text-align: center;
+  padding: 90px 20px;
+  background: linear-gradient(135deg, #e8f4ff, #f6faff);
+  animation: fadeIn 1.3s ease-in-out forwards;
+}
+
+.about-header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.about-header h1 span {
+  color: #007acc;
+}
+
+.about-header p {
+  margin-top: 12px;
+  font-size: 1.15rem;
+  color: #555;
+  opacity: 0;
+  animation: slideUp 1.3s ease forwards 0.3s;
+}
+
+/* ------------ SECTION TITLE ------------ */
+.about-section,
+.team-section {
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.about-section h2,
+.team-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.about-section h2::after,
+.team-section h2::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background: #007acc;
+  border-radius: 2px;
+  display: block;
+  margin: 8px auto 0;
+  animation: growLine 1s ease-in-out forwards;
+}
+
+/* ------------ COMPANY INFO ------------ */
+.about-section p {
+  max-width: 850px;
+  margin: auto;
+  color: #555;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards 0.4s;
+}
+
+/* ------------ MISSION/VISION ------------ */
+.mv-section {
+  padding: 60px 20px;
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.mv-card {
+  width: 310px;
+  padding: 28px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  opacity: 0;
+  animation: slideUp 1s ease forwards;
+}
+
+.mv-card:hover {
+  background: #f5faff;
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.mv-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  color: #007acc;
+}
+
+.mv-card p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ------------ VALUES ------------ */
+.value-list {
+  list-style: none;
+  margin-top: 18px;
+}
+
+.value-list li {
+  padding: 10px 0;
+  font-size: 1.1rem;
+  color: #333;
+  transition: 0.3s;
+}
+
+.value-list li:hover {
+  color: #007acc;
+}
+
+/* ------------ TEAM SECTION ------------ */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.team-card {
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 14px;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  opacity: 0;
+  animation: fadeIn 1.3s ease forwards;
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  background: #f8fcff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.team-card h3 {
+  color: #007acc;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+/* ------------ ANIMATIONS ------------ */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes growLine {
+  from { width: 0; }
+  to { width: 60px; }
+}
