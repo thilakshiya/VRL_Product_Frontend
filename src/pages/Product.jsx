@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Product.css";
 // import { getProducts } from "../api/productApi";
-import image01 from "/home/uki/Documents/Final project/vrl_project_frontend_version1/src/assets/image02.jpg";
+import image01 from "../assets/image02.jpg";
 
 const Product = () => {
   const [products, setProducts] = useState([]);

@@ -166,7 +166,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import Logo01 from "../assets/logo.png";
+import Logo01 from "../assets/logo01.png";
 import "./Navbar.css";
 
 // --- Icons (Feather Icons Style) ---

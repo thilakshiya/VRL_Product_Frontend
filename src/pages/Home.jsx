@@ -183,7 +183,7 @@ import "./Home.css";
 import ChatBot from "./ChatBot"; 
 
 // Import Images (Ensure paths are correct)
-import HeroImage from "../assets/image01.avif";
+import HeroImage from "../assets/Copilot_20251208_144053-removebg-preview (1).png";
 import ProductImg1 from "../assets/image02.jpg";
 import ProductImg2 from "../assets/image03.jpeg";
 
