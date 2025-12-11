@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ChatBot from "./components/Chatbot";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -41,7 +42,7 @@ function App() {
   return (
     <>
       <Navbar user={user} />
-
+     <ChatBot />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
