@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Admin.css";
 
-const API = "http://localhost:5000/api";
+const API = "https://vrl-product-backend-stru.onrender.com/api";
 
 export default function Admin() {
   const [tab, setTab] = useState("dashboard");

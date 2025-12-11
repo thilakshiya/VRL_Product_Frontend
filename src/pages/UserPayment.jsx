@@ -5,7 +5,7 @@ import axios from "axios";
 import ConfirmModal from "../components/ConfirmModal";
 import "./UserPayment.css";
 
-const API = "http://localhost:5000/api/payments/users";
+const API = "https://vrl-product-backend-stru.onrender.com/api/payments/users";
 
 // --- Modern Icons ---
 const CardIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>;
