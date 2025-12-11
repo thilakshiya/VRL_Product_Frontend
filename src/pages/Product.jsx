@@ -19,7 +19,7 @@ const Product = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/products");// Replace with your API
+        const res = await axios.get("https://vrl-product-backend-stru.onrender.com/api/products");// Replace with your API
         setProducts(res.data);
         setLoading(false);
       } catch (err) {
