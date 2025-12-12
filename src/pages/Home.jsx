@@ -180,7 +180,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import ChatBot from "./ChatBot"; 
+
 
 // Import Images (Ensure paths are correct)
 import HeroImage from "../assets/Copilot_20251208_144053-removebg-preview (1).png";
@@ -350,7 +350,7 @@ function Home() {
           </form>
         </div>
       </footer>
-      <ChatBot />
+
 
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./ChatBot.css";
+import "./Chatbot.css";
 
 // Icons
 const ChatIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>;
@@ -31,7 +31,7 @@ const ChatBot = () => {
 
     try {
       // Call Backend API
-      const response = await fetch("http://localhost:5000/api/chat", {
+      const response = await fetch("https://vrl-product-backend-stru.onrender.com/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input }),
