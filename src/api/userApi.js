@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000'
+  baseURL: import.meta.env.VITE_API_URL || 'https://vrl-product-backend-stru.onrender.com'
 });
 
 export const registerUser = (data) => API.post('/api/users/register', data);
