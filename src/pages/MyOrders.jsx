@@ -14,7 +14,7 @@ const MyOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+        const userInfo = JSON.parse(cookies.getItem("userInfo"));
         
         if (!userInfo) {
             navigate("/login");
@@ -66,7 +66,6 @@ const MyOrders = () => {
               <th>Order ID</th>
               <th>Date</th>
               <th>Total</th>
-              <th>Paid</th>
               <th>Delivered</th>
               <th>Action</th>
             </tr>

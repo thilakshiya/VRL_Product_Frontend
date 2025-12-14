@@ -13,6 +13,7 @@
   "dependencies": {
     "@stripe/stripe-js": "^8.5.3",
     "axios": "^1.13.2",
+    "cookies": "^0.9.1",
     "lucide-react": "^0.554.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

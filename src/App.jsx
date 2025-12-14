@@ -32,8 +32,8 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("userToken");
-    const userName = localStorage.getItem("userName");
+    const token = cookies.getItem("userToken");
+    const userName = cookies.getItem("userName");
     if (token && userName) {
       setUser({ name: userName });
     }

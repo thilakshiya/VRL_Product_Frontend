@@ -32,7 +32,7 @@ export default function Admin() {
 
 
 const getConfig = () => {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(cookies.getItem("userInfo"));
   const token = userInfo?.token;
 
   return {

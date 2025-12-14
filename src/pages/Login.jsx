@@ -28,7 +28,7 @@ const Login = () => {
       const { data } = await loginUser({ email, password });
 
       // 1. Save data to LocalStorage
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      cookies.setItem("userInfo", JSON.stringify(data));
 
       // 2. Force Navbar Update
       window.dispatchEvent(new Event("auth-change"));

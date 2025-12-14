@@ -52,7 +52,7 @@ function Register({ setUser }) {
       });
 
       // 2️⃣ Save to LocalStorage (Standardized as 'userInfo')
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      cookies.setItem("userInfo", JSON.stringify(data));
 
       // 3️⃣ Force Navbar Update
       window.dispatchEvent(new Event("auth-change")); 
