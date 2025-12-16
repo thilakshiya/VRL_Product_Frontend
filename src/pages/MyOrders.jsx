@@ -14,7 +14,7 @@ const MyOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const userInfo = JSON.parse(cookies.getItem("userInfo"));
+        const userInfo = JSON.parse(localStorage.getItem("userInfo"));
         
         if (!userInfo) {
             navigate("/login");
@@ -28,7 +28,7 @@ const MyOrders = () => {
         };
 
         // Call the backend route we just created
-        const { data } = await axios.get("http://localhost:5000/api/orders/myorders", config);
+        const { data } = await axios.get("ttps:/vrl-product-backend-stru.onrender.com/api/orders/myorders", config);
         setOrders(data);
         setLoading(false);
       } catch (err) {

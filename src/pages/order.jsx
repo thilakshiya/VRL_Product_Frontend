@@ -52,7 +52,7 @@ const Order = () => {
     e.preventDefault();
     if (!product) return;
 
-    const userToke = cookies.getItem("userInfo");
+    const userToke = localStorage.getItem("userInfo");
     if (!userToke) {
       setMessage("You must log in to place an order!");
       return;

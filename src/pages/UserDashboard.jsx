@@ -18,7 +18,7 @@ function UserDashboard() {
 
   useEffect(() => {
     // Correctly parse the JSON object from Login
-    const userInfo = cookies.getItem("userInfo");
+    const userInfo = localStorage.getItem("userInfo");
     if (userInfo) {
       setUser(JSON.parse(userInfo));
     }

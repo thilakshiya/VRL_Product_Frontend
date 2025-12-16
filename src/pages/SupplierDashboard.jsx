@@ -28,7 +28,7 @@ const SupplierDashboard = () => {
   const [showPaymentPopup, setShowPaymentPopup] = useState(false);
 
   
-  const userInfo = cookies.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")) : null;
+  const userInfo = localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")) : null;
   const token = userInfo?.token;
   
   const config = {

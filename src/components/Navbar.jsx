@@ -50,7 +50,7 @@ function Navbar() {
   };
 
   const confirmLogout = () => {
-    cookieStore.removeItem("userInfo");
+    localStorage.removeItem("userInfo");
     window.dispatchEvent(new Event("auth-change"));
     setCurrentUser(null);
     setShowConfirm(false);

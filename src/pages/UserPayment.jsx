@@ -25,7 +25,7 @@ const CreatePayment = (props) => {
   const [success, setSuccess] = useState(null);
   const [confirmModal, setConfirmModal] = useState(false);
 
-  const userInfo = JSON.parse(cookies.getItem("userInfo"));
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const token = userInfo?.token;
 
   const config = {

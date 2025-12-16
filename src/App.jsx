@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+// import {Cookies} from "cookies";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -32,8 +33,8 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const token = cookies.getItem("userToken");
-    const userName = cookies.getItem("userName");
+    const token = localStorage.getItem("userToken");
+    const userName = localStorage.getItem("userName");
     if (token && userName) {
       setUser({ name: userName });
     }

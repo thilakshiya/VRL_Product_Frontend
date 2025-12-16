@@ -35,7 +35,7 @@ const Product = () => {
 
 
 const handleOrder = (id) => {
-  let userInfo = cookies.getItem("userInfo");
+  let userInfo = localStorage.getItem("userInfo");
 
   // If nothing stored → user not logged in
   if (!userInfo || userInfo === "null" || userInfo === "undefined") {
