@@ -13,6 +13,7 @@ import "./Admin.css";
 
 const API = "https://vrl-product-backend-stru.onrender.com/api";
 
+
 export default function Admin() {
   const [tab, setTab] = useState("dashboard");
 
@@ -103,12 +104,13 @@ const getConfig = () => {
   const handleCreateProduct = async (e) => {
     e.preventDefault();
     try {
-      const body = { name: pName, price: Number(pPrice), countInStock: Number(pStock) };
+      const body = { name: pName, price: Number(pPrice), stock: Number(pStock) };
       await axios.post(`${API}/products`, body, getConfig());
       alert("Product created");
       setPName(""); setPPrice(""); setPStock("");
       fetchProducts();
       setTab("products");
+      console.log(body, "Product Data")
     } catch (err) {
       console.error(err.response?.data || err.message);
       alert("Create failed: " + (err.response?.data?.message || err.message));
@@ -120,8 +122,9 @@ const getConfig = () => {
     setEditingValues({
       name: prod.name || "",
       price: prod.price || 0,
-      countInStock: prod.countInStock || 0
+      stock: prod.stock || 0
     });
+    console.log("product updated",res.data)
   };
 
   const cancelEdit = () => {
@@ -160,6 +163,89 @@ const getConfig = () => {
     </button>
   );
 
+
+const [editUserId, setEditUserId] = useState(null);
+
+const [editUser, setEditUser] = useState({
+  name: "",
+  email: "",
+  role: "user",
+});
+
+
+
+
+
+
+
+// const updateUser = async (id) => {
+//   try {
+//     const { data } = await axios.put(
+//       `https://vrl-product-backend-stru.onrender.com/api/users/${id}`,
+//       {
+//         name: editUser.name,
+//         email: editUser.email,
+//         role: editUser.role,
+//       },
+//       {
+//         headers: {
+//           Authorization: `Bearer ${userInfo.token}`,
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     );
+
+//     // ✅ UI update without refresh
+//     setUsers((prev) =>
+//       prev.map((u) =>
+//         u._id === id ? data : u
+//       )
+//     );
+
+//     setEditUserId(null);
+//   } catch (error) {
+//     console.error("Update failed:", error.response?.data || error.message);
+//     alert("User update failed");
+//   }
+// };
+
+
+
+
+const updateUser = async (id) => {
+  try {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.put(
+      `http://localhost:5000/api/users/${id}`,
+      editUser,
+      config
+    );
+
+    // Update UI instantly
+    setUsers(users.map((u) => (u._id === id ? data : u)));
+
+    setEditUserId(null);
+    alert("User updated successfully");
+  } catch (error) {
+    console.error(error);
+    alert("Update failed");
+  }
+};
+
+
+
+
+
+
+
   return (
     <div className="admin-wrap">
       <aside className="admin-sidebar">
@@ -188,7 +274,7 @@ const getConfig = () => {
           </section>
         )}
 
-        {tab === "suppliers" && (
+        {/* {tab === "suppliers" && (
           <section>
             <h1>Suppliers</h1>
             <table className="admin-table" style={{ marginTop: 20 }}>
@@ -207,8 +293,43 @@ const getConfig = () => {
               </tbody>
             </table>
           </section>
-        )}
- {tab === "users" && (
+        )} */}
+
+
+{tab === "suppliers" && (
+  <section>
+    <h1>Suppliers</h1>
+
+    <table className="admin-table" style={{ marginTop: 20 }}>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Stock (kg)</th>
+          <th>Contact</th>
+          <th>Price / kg</th>
+          <th>Total Amount (Rs)</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {suppliers.map((s) => (
+          <tr key={s._id}>
+            <td>{s.name}</td>
+            <td>{s.quantity}</td>
+            <td>{s.contactNo}</td>
+            <td>Rs {s.price}</td>
+            <td>
+              <strong>Rs {s.quantity * s.price}</strong>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+)}
+
+
+ {/* {tab === "users" && (
           <section>
             <h1>Registered Users</h1>
             <table className="admin-table">
@@ -226,7 +347,195 @@ const getConfig = () => {
               </tbody>
             </table>
           </section>
-        )}
+        )} */}
+
+
+
+
+{/* {tab === "users" && (
+  <section>
+    <h1>Registered Users</h1>
+
+    <table className="admin-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {users.map((u) => (
+          <tr key={u._id}>
+            <td>{u.name}</td>
+            <td>{u.email}</td>
+
+            <td>
+              {editUserId === u._id ? (
+                <select
+                  value={editRole}
+                  onChange={(e) => setEditRole(e.target.value)}
+                >
+                  <option value="user">User</option>
+                  <option value="supplier">Supplier</option>
+                  <option value="admin">Admin</option>
+                </select>
+              ) : (
+                <span className={`role ${u.role}`}>{u.role}</span>
+              )}
+            </td>
+
+            <td>
+              {editUserId === u._id ? (
+                <>
+                  <button
+                    className="btn-save"
+                    onClick={() => updateUserRole(u._id)}
+                  >
+                    Save
+                  </button>
+
+                  <button
+                    className="btn-cancel"
+                    onClick={() => setEditUserId(null)}
+                  >
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                <button
+                  className="btn-edit"
+                  onClick={() => {
+                    setEditUserId(u._id);
+                    setEditRole(u.role);
+                  }}
+                >
+                  Edit Role
+                </button>
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+)} */}
+
+
+
+
+{tab === "users" && (
+  <section>
+    <h1>Registered Users</h1>
+
+    <table className="admin-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {users.map((u) => (
+          <tr key={u._id}>
+            {/* NAME */}
+            <td>
+              {editUserId === u._id ? (
+                <input
+                  value={editUser.name}
+                  onChange={(e) =>
+                    setEditUser({ ...editUser, name: e.target.value })
+                  }
+                />
+              ) : (
+                u.name
+              )}
+            </td>
+
+            {/* EMAIL */}
+            <td>
+              {editUserId === u._id ? (
+                <input
+                  value={editUser.email}
+                  onChange={(e) =>
+                    setEditUser({ ...editUser, email: e.target.value })
+                  }
+                />
+              ) : (
+                u.email
+              )}
+            </td>
+
+            {/* ROLE */}
+            <td>
+              {editUserId === u._id ? (
+                <select
+                  value={editUser.role}
+                  onChange={(e) =>
+                    setEditUser({ ...editUser, role: e.target.value })
+                  }
+                >
+                  <option value="user">User</option>
+                  <option value="supplier">Supplier</option>
+                  <option value="admin">Admin</option>
+                </select>
+              ) : (
+                <span className={`role ${u.role}`}>{u.role}</span>
+              )}
+            </td>
+
+            {/* ACTION */}
+            <td>
+              {editUserId === u._id ? (
+                <>
+                  <button
+                    className="btn-save"
+                    onClick={() => updateUser(u._id)}
+                  >
+                    Save
+                  </button>
+
+                  <button
+                    className="btn-cancel"
+                    onClick={() => setEditUserId(null)}
+                  >
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                <button
+                  className="btn-edit"
+                  onClick={() => {
+                    setEditUserId(u._id);
+                    setEditUser({
+                      name: u.name,
+                      email: u.email,
+                      role: u.role,
+                    });
+                  }}
+                >
+                  Edit
+                </button>
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+)}
+
+
+
+
+
+
+
          {tab === "addproduct" && (
           <section>
             <h1>Add Product</h1>

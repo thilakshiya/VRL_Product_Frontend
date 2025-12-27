@@ -1,184 +1,574 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { 
+  Shield, 
+  Truck, 
+  Star, 
+  Check, 
+  Leaf, 
+  Users 
+} from 'lucide-react';
 
+// --- MOCK DATA ---
+const productsData = [
+  { id: 1, name: "Premium Cocoa", price: 1200, img: "src/assets/veg.png" },
+  { id: 2, name: "Industrial Steel", price: 5400, img: "src/assets/pro.webp" },
+  { id: 3, name: "Organic Spices", price: 850, img: "src/assets/pro02.webp" },
+];
 
-
-
-import React from "react";
-import { Link } from "react-router-dom";
-import "./Home.css";
-
-
-// Import Images (Ensure paths are correct)
-import HeroImage from "../assets/Copilot_20251208_144053-removebg-preview (1).png";
-import ProductImg1 from "../assets/image02.jpg";
-import ProductImg2 from "../assets/image03.jpeg";
-
-// Icons
-const CheckIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>;
-const TruckIcon = () => <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>;
-const StarIcon = () => <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>;
-const ShieldIcon = () => <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>;
-const ArrowRight = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>;
-const CartIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>;
-
-function Home() {
-  const featuredProducts = [
-    { id: 1, name: "Premium Cocoa", price: 1200, img: ProductImg1, category: "Raw Material" },
-    { id: 2, name: "Industrial Steel", price: 5400, img: ProductImg2, category: "Construction" },
-    { id: 3, name: "Organic Spices", price: 850, img: HeroImage, category: "Agriculture" },
-    { id: 4, name: "Textile Fabric", price: 2100, img: ProductImg1, category: "Textile" },
-  ];
-
+const LandingPage = () => {
   return (
-    <div className="home-container">
-      
-      {/* --- Animated Background Shapes --- */}
-      <div className="background-shapes">
-        <div className="shape shape-1"></div>
-        <div className="shape shape-2"></div>
-        <div className="shape shape-3"></div>
-      </div>
+    <div style={styles.container}>
+      {/* GLOBAL STYLES FOR FONTS, HOVER EFFECTS, AND MEDIA QUERIES */}
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Inter:wght@300;400;600&display=swap');
+          
+          body { margin: 0; padding: 0; box-sizing: border-box; }
+          * { box-sizing: border-box; }
 
-      {/* --- 1. HERO SECTION --- */}
-      <header className="hero-section">
-        <div className="hero-content glass-card">
-          <span className="hero-badge">New Collection 2025</span>
-          <h1 className="hero-title">
+          /* Hover Effects */
+          .hover-card:hover { transform: translateY(-5px); transition: transform 0.3s ease; }
+          .btn-hover:hover { opacity: 0.9; transform: scale(1.02); }
+          .img-zoom:hover { transform: scale(1.05); transition: transform 0.5s ease; }
+
+          /* Responsive Grid Logic */
+          .responsive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+          .responsive-flex { display: flex; flex-wrap: wrap; }
+          
+          @media (max-width: 900px) {
+            .hero-wrap { flex-direction: column-reverse; text-align: center; }
+            .hero-left { align-items: center; padding-right: 0 !important; }
+            .hero-stats { justify-content: center; width: 100%; }
+            .sus-section { flex-direction: column; }
+          }
+        `}
+      </style>
+
+      {/* --- HERO SECTION --- */}
+      <header className="hero-wrap" style={styles.heroSection}>
+        <div className="hero-left" style={styles.heroLeft}>
+          <h1 style={styles.h1}>
             Quality Products <br /> 
-            <span className="highlight">Delivered Fast.</span>
+            <span style={styles.highlight}>Delivered Fast.</span>
           </h1>
-          <p className="hero-subtitle">
+          <p style={styles.subtitle}>
             Your trusted partner for premium supplies. We connect suppliers and customers with a seamless, secure platform.
           </p>
           
-          <div className="hero-actions">
-            <Link to="/product" className="btn-primary">Shop Now</Link>
-            <Link to="/register" className="btn-outline">Join Us</Link>
+          <div style={styles.heroActions}>
+            <Link to="/product" className="btn-hover" style={styles.btnPrimary}>Shop Now</Link>
+            <Link to="/register" className="btn-hover" style={styles.btnSecondary}>Join Us</Link>
           </div>
 
-          <div className="hero-stats">
-            <div className="stat-item"><strong>5k+</strong> <span>Products</span></div>
-            <div className="stat-item"><strong>1.2k+</strong> <span>Users</span></div>
-            <div className="stat-item"><strong>24/7</strong> <span>Support</span></div>
+          <div className="hero-stats" style={styles.statsBar}>
+            <div style={styles.statItem}>
+              <strong style={styles.statNum}>5k+</strong> <span style={styles.statLabel}>Products</span>
+            </div>
+            <div style={styles.divider}></div>
+            <div style={styles.statItem}>
+              <strong style={styles.statNum}>1.2k+</strong> <span style={styles.statLabel}>Users</span>
+            </div>
+            <div style={styles.divider}></div>
+            <div style={styles.statItem}>
+              <Leaf size={18} color="#568c76"/> <span style={styles.statLabel}>24/7 Support</span>
+            </div>
           </div>
         </div>
 
-        <div className="hero-image-container">
-          <img src={HeroImage} alt="VRL Hero" className="hero-main-img" />
-          <div className="floating-card glass-card-small">
-            <CheckIcon /> <span>Verified Quality</span>
-          </div>
+        <div style={styles.heroRight}>
+          <img 
+            src="src/assets/Copilot_20251208_144053-removebg-preview (1).png" 
+            alt="Hero" 
+            style={styles.heroImg} 
+          />
         </div>
       </header>
 
-      {/* --- 3. FEATURES SECTION --- */}
-      <section className="features-section">
-        <div className="section-header">
-          <h2>Why Choose VRL?</h2>
-          <p>We provide the best experience for our customers.</p>
+      {/* --- FEATURES (ICONS) --- */}
+      <section style={styles.section}>
+        <div style={styles.sectionHeader}>
+          <h2 style={styles.h2}>Why Choose VRL?</h2>
         </div>
 
-        <div className="features-grid">
-          <div className="feature-card glass-panel">
-            <div className="icon-box"><ShieldIcon /></div>
-            <h3>Trusted Platform</h3>
-            <p>Secure payments and verified suppliers ensure a safe buying experience every time.</p>
+        <div className="responsive-grid">
+          {/* Card 1 */}
+          <div className="hover-card" style={styles.featureCard}>
+            <div style={styles.iconBox}><Shield size={32} /></div>
+            <h3 style={styles.h3}>Trusted Platform</h3>
+            <p style={styles.pSmall}>Secure payments and verified suppliers ensure a safe buying experience.</p>
+            <span style={styles.linkText}>Read More</span>
           </div>
-          <div className="feature-card glass-panel">
-            <div className="icon-box"><TruckIcon /></div>
-            <h3>Fast Delivery</h3>
-            <p>Our optimized logistics network ensures your products arrive on time, every time.</p>
+          {/* Card 2 */}
+          <div className="hover-card" style={styles.featureCard}>
+            <div style={styles.iconBox}><Truck size={32} /></div>
+            <h3 style={styles.h3}>Fast Delivery</h3>
+            <p style={styles.pSmall}>Optimized logistics network ensures your products arrive on time.</p>
+            <span style={styles.linkText}>Read More</span>
           </div>
-          <div className="feature-card glass-panel">
-            <div className="icon-box"><StarIcon /></div>
-            <h3>Premium Quality</h3>
-            <p>We strictly quality check every product listed to maintain high standards.</p>
+          {/* Card 3 */}
+          <div className="hover-card" style={styles.featureCard}>
+            <div style={styles.iconBox}><Star size={32} /></div>
+            <h3 style={styles.h3}>Premium Quality</h3>
+            <p style={styles.pSmall}>Strict quality checks for top-notch products every time.</p>
+            <span style={styles.linkText}>Read More</span>
+          </div>
+           {/* Card 4 */}
+           <div className="hover-card" style={styles.featureCard}>
+            <div style={styles.iconBox}><Leaf size={32} /></div>
+            <h3 style={styles.h3}>Eco-Friendly</h3>
+            <p style={styles.pSmall}>We support sustainable trading practices globally.</p>
+            <span style={styles.linkText}>Read More</span>
           </div>
         </div>
       </section>
 
-      {/* --- 4. FEATURED PRODUCTS --- */}
-      <section className="featured-products">
-        <div className="section-header">
-          <h2>Best Selling Products</h2>
-          <p>Grab the best deals before stocks run out.</p>
+      {/* --- PRODUCTS SECTION --- */}
+      <section style={styles.section}>
+        <div style={{...styles.sectionHeader, textAlign: 'left'}}>
+          <h2 style={styles.h2}>Best Selling Products</h2>
+          <p style={styles.p}>Grab the best deals before stocks run out.</p>
         </div>
         
-        <div className="products-grid">
-          {featuredProducts.map((item) => (
-            <div key={item.id} className="product-card-mini glass-panel">
-              <div className="pc-img-wrap">
-                <img src={item.img} alt={item.name} />
-                <span className="category-tag">{item.category}</span>
+        <div className="responsive-grid">
+          {productsData.map((item) => (
+            <div key={item.id} className="hover-card" style={styles.productCard}>
+              <div style={styles.productImgWrap}>
+                <img src={item.img} alt={item.name} className="img-zoom" style={styles.productImg} />
               </div>
-              <div className="pc-details">
-                <h4>{item.name}</h4>
-                <div className="pc-bottom">
-                  <span className="pc-price">Rs {item.price}</span>
-                  <Link to="/product" className="pc-btn"><CartIcon /></Link>
-                </div>
+              <div style={styles.productDetails}>
+                <h4 style={styles.h4}>{item.name}</h4>
+                <p style={styles.price}>Rs {item.price}</p>
+                <button className="btn-hover" style={styles.btnAdd}>Add to Cart</button>
               </div>
             </div>
           ))}
         </div>
-        <div className="center-btn">
-          <Link to="/product" className="btn-text">View All Products <ArrowRight /></Link>
-        </div>
       </section>
 
-      {/* --- 5. SUPPLIER CTA BANNER --- */}
-      <section className="supplier-banner glass-panel">
-        <div className="banner-content">
-          <h2>Grow Your Business with VRL</h2>
-          <p>Join thousands of suppliers selling their products to a global audience. Low fees, high reach.</p>
-          <Link to="/register" className="btn-white">Start Selling Today</Link>
-        </div>
-      </section>
-
-      {/* --- 6. TESTIMONIALS --- */}
-      <section className="testimonials-section">
-        <div className="section-header">
-          <h2>What Our Clients Say</h2>
-        </div>
-        <div className="testimonials-grid">
-          <div className="testimonial-card glass-panel">
-            <p>"VRL has completely transformed how we source raw materials. The delivery is always on time."</p>
-            <div className="user-info">
-              <div className="avatar">JD</div>
-              <div><strong>John Doe</strong><span>Construction Mgr.</span></div>
+      {/* --- SUSTAINABLE SECTION --- */}
+      <section className="sus-section" style={styles.sustainableSection}>
+        <div style={styles.susContent}>
+          <h2 style={styles.h2}>Sustainable Trading</h2>
+          <p style={styles.p}>We bridge the gap between suppliers and eco-conscious businesses.</p>
+          
+          <div style={styles.susFeatureList}>
+            <div style={styles.susItem}>
+              <div style={{...styles.susIcon, background: '#568c76'}}><Check color="white" /></div>
+              <div>
+                <h4 style={styles.h4Small}>Supplier Partnership</h4>
+                <p style={styles.pSmall}>Join our network of verified suppliers who prioritize sustainable practices.</p>
+              </div>
             </div>
-          </div>
-          <div className="testimonial-card glass-panel">
-            <p>"As a supplier, the fixed price model ensures I always get paid fairly without negotiation hassles."</p>
-            <div className="user-info">
-              <div className="avatar">AS</div>
-              <div><strong>Anita S.</strong><span>Organic Farmer</span></div>
-            </div>
-          </div>
-          <div className="testimonial-card glass-panel">
-            <p>"The customer support is outstanding. They helped me track my bulk order at every step."</p>
-            <div className="user-info">
-              <div className="avatar">MK</div>
-              <div><strong>Mike K.</strong><span>Retailer</span></div>
+            <div style={styles.susItem}>
+              <div style={{...styles.susIcon, background: '#2d4f43'}}><Leaf color="white" /></div>
+              <div>
+                <h4 style={styles.h4Small}>Eco-Conscious Buyers</h4>
+                <p style={styles.pSmall}>Connect with businesses committed to environmentally friendly products.</p>
+              </div>
             </div>
           </div>
         </div>
+        <div style={styles.susImageWrap}>
+           <img 
+             src="src/assets/image5.jpeg" 
+             alt="Sustainable" 
+             style={styles.susImg} 
+           />
+        </div>
       </section>
 
-      {/* --- 7. NEWSLETTER FOOTER --- */}
-      <footer className="newsletter-footer glass-panel">
-        <div className="newsletter-content">
-          <h3>Subscribe to our Newsletter</h3>
-          <p>Get the latest product updates and exclusive offers sent to your inbox.</p>
-          <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
-            <input type="email" placeholder="Enter your email address" />
-            <button>Subscribe</button>
-          </form>
+      {/* --- TESTIMONIALS --- */}
+      <section style={styles.section}>
+        <div style={styles.sectionHeader}>
+          <h2 style={styles.h2}>What Our Clients Say</h2>
+          <p style={styles.p}>Join thousands of suppliers selling their products to a global audience.</p>
         </div>
-      </footer>
+        
+        <div className="responsive-grid">
+          {/* Testimonial 1 */}
+          <div className="hover-card" style={styles.testimonialCard}>
+            <div style={styles.userHeader}>
+               <img src="https://i.pravatar.cc/150?img=68" alt="John" style={styles.avatar}/>
+               <div>
+                 <strong style={styles.userName}>John Doe</strong>
+                 <span style={styles.userRole}>Construction Mgr.</span>
+               </div>
+            </div>
+            <p style={styles.quote}>"VRL has completely transformed how we source raw materials. The delivery is always on time."</p>
+            <button style={styles.btnPill}>+ See Profile</button>
+          </div>
+          
+          {/* Testimonial 2 */}
+          <div className="hover-card" style={styles.testimonialCard}>
+            <div style={styles.userHeader}>
+               <img src="https://i.pravatar.cc/150?img=44" alt="Anita" style={styles.avatar}/>
+               <div>
+                 <strong style={styles.userName}>Anita S.</strong>
+                 <span style={styles.userRole}>Organic Farmer</span>
+               </div>
+            </div>
+            <p style={styles.quote}>"As a supplier, the fixed price model ensures I always get paid fairly without negotiation hassles."</p>
+            <button style={styles.btnPill}>+ See Profile</button>
+          </div>
 
+          {/* Testimonial 3 */}
+          <div className="hover-card" style={styles.testimonialCard}>
+            <div style={styles.userHeader}>
+               <img src="src/assets/images.jpeg" alt="Mike" style={styles.avatar}/>
+               <div>
+                 <strong style={styles.userName}>Mike K.</strong>
+                 <span style={styles.userRole}>Retailer</span>
+               </div>
+            </div>
+            <p style={styles.quote}>"The customer support is outstanding. They helped me track my bulk order at every step."</p>
+            <button style={styles.btnPill}>+ See Profile</button>
+          </div>
+        </div>
+      </section>
+
+      {/* --- FOOTER CTA --- */}
+      {/* <footer style={styles.footer}>
+         <h2 style={{...styles.h2, color: 'white'}}>Grow Your Business with VRL</h2>
+         <p style={{color: '#ebf3f0', marginBottom: '30px'}}>Ready to get started?</p>
+         <Link to="/register" className="btn-hover" style={styles.btnWhite}>Start Selling Today</Link>
+      </footer> */}
 
     </div>
   );
-}
+};
 
-export default Home;
+// --- INLINE STYLES OBJECT ---
+const styles = {
+  container: {
+    fontFamily: '"Inter", sans-serif',
+    backgroundColor: '#f8fbf9',
+    color: '#1f2b26',
+    overflowX: 'hidden',
+    width: '100%',
+  },
+  
+  // TYPOGRAPHY
+  h1: {
+    fontFamily: '"Merriweather", serif',
+    color: '#2d4f43',
+    fontSize: '3.5rem',
+    fontWeight: '700',
+    lineHeight: '1.1',
+    margin: '0 0 20px 0',
+  },
+  h2: {
+    fontFamily: '"Merriweather", serif',
+    color: '#2d4f43',
+    fontSize: '2.5rem',
+    fontWeight: '700',
+    marginBottom: '15px',
+  },
+  h3: {
+    fontFamily: '"Merriweather", serif',
+    color: '#2d4f43',
+    fontSize: '1.3rem',
+    margin: '15px 0 10px 0',
+  },
+  h4: {
+    fontFamily: '"Merriweather", serif',
+    fontSize: '1.2rem',
+    margin: '0 0 5px 0',
+    color: '#2d4f43',
+  },
+  h4Small: {
+    fontFamily: '"Merriweather", serif',
+    fontSize: '1.1rem',
+    margin: '0 0 5px 0',
+    color: '#2d4f43',
+  },
+  highlight: {
+    color: '#568c76',
+  },
+  subtitle: {
+    fontSize: '1.1rem',
+    color: '#6b7c75',
+    lineHeight: '1.6',
+    marginBottom: '35px',
+    maxWidth: '480px',
+  },
+  p: {
+    color: '#6b7c75',
+    lineHeight: '1.6',
+  },
+  pSmall: {
+    color: '#6b7c75',
+    fontSize: '0.95rem',
+    lineHeight: '1.5',
+  },
+
+  // HERO
+  heroSection: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '60px 8%',
+    background: 'linear-gradient(135deg, #f1f7f5 0%, #ffffff 100%)',
+    minHeight: '85vh',
+  },
+  heroLeft: {
+    flex: '1',
+    zIndex: '2',
+    display: 'flex',
+    flexDirection: 'column',
+    paddingRight: '40px',
+  },
+  heroActions: {
+    display: 'flex',
+    gap: '15px',
+    marginBottom: '50px',
+  },
+  btnPrimary: {
+    backgroundColor: '#568c76',
+    color: '#ffffff',
+    padding: '14px 36px',
+    borderRadius: '8px',
+    textDecoration: 'none',
+    fontWeight: '600',
+    border: 'none',
+    cursor: 'pointer',
+    boxShadow: '0 4px 15px rgba(86, 140, 118, 0.3)',
+  },
+  btnSecondary: {
+    backgroundColor: '#ffffff',
+    color: '#2d4f43',
+    padding: '13px 35px',
+    borderRadius: '8px',
+    textDecoration: 'none',
+    fontWeight: '600',
+    border: '1px solid #d1dcd7',
+    cursor: 'pointer',
+  },
+  statsBar: {
+    background: '#edf4f2',
+    padding: '15px 30px',
+    borderRadius: '16px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '25px',
+    width: 'fit-content',
+  },
+  statItem: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+  },
+  statNum: {
+    fontSize: '1.2rem',
+    color: '#2d4f43',
+  },
+  statLabel: {
+    fontSize: '0.9rem',
+    color: '#6b7c75',
+  },
+  divider: {
+    width: '1px',
+    height: '20px',
+    background: '#cbdad5',
+  },
+  heroRight: {
+    flex: '1',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  heroImg: {
+    width: '100%',
+    maxWidth: '500px',
+    height: 'auto',
+    borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%', // The Organic Blob Shape
+    boxShadow: '20px 20px 0px rgba(86, 140, 118, 0.1)',
+    objectFit: 'cover',
+  },
+
+  // COMMON SECTION
+  section: {
+    padding: '80px 8%',
+  },
+  sectionHeader: {
+    textAlign: 'center',
+    marginBottom: '50px',
+  },
+
+  // FEATURES
+  featureCard: {
+    background: '#ffffff',
+    padding: '30px 25px',
+    borderRadius: '24px',
+    textAlign: 'center',
+    boxShadow: '0 10px 30px rgba(86, 140, 118, 0.05)',
+  },
+  iconBox: {
+    background: '#ebf3f0',
+    width: '70px',
+    height: '70px',
+    borderRadius: '50%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '0 auto 20px',
+    color: '#568c76',
+  },
+  linkText: {
+    color: '#568c76',
+    fontWeight: '600',
+    fontSize: '0.9rem',
+    cursor: 'pointer',
+    display: 'block',
+    marginTop: '15px',
+  },
+
+  // PRODUCTS
+  productCard: {
+    background: '#ffffff',
+    borderRadius: '24px',
+    overflow: 'hidden',
+    boxShadow: '0 10px 30px rgba(86, 140, 118, 0.08)',
+  },
+  productImgWrap: {
+    height: '240px',
+    overflow: 'hidden',
+    backgroundColor: '#f0f0f0',
+  },
+  productImg: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+  },
+  productDetails: {
+    padding: '25px',
+  },
+  price: {
+    fontWeight: '600',
+    color: '#6b7c75',
+    margin: '10px 0 20px 0',
+  },
+  btnAdd: {
+    width: '100%',
+    backgroundColor: '#568c76',
+    color: 'white',
+    padding: '12px',
+    borderRadius: '10px',
+    border: 'none',
+    cursor: 'pointer',
+    fontWeight: '600',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '8px',
+  },
+
+  // SUSTAINABLE SECTION
+  sustainableSection: {
+    background: '#ebf3f0',
+    padding: '80px 8%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: '60px',
+    margin: '40px 4%',
+    borderRadius: '40px',
+  },
+  susContent: {
+    flex: '1',
+  },
+  susFeatureList: {
+    marginTop: '30px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '30px',
+  },
+  susItem: {
+    display: 'flex',
+    gap: '20px',
+  },
+  susIcon: {
+    width: '50px',
+    height: '50px',
+    borderRadius: '12px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: '0',
+  },
+  susImageWrap: {
+    flex: '1',
+  },
+  susImg: {
+    width: '100%',
+    borderRadius: '30px',
+    boxShadow: '0 20px 40px rgba(0,0,0,0.05)',
+  },
+
+  // TESTIMONIALS
+  testimonialCard: {
+    background: '#ffffff',
+    padding: '35px',
+    borderRadius: '24px',
+    boxShadow: '0 10px 30px rgba(86, 140, 118, 0.05)',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  userHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '15px',
+    marginBottom: '20px',
+  },
+  avatar: {
+    width: '50px',
+    height: '50px',
+    borderRadius: '50%',
+    objectFit: 'cover',
+  },
+  userName: {
+    display: 'block',
+    color: '#2d4f43',
+    fontSize: '1rem',
+  },
+  userRole: {
+    fontSize: '0.85rem',
+    color: '#6b7c75',
+  },
+  quote: {
+    fontStyle: 'italic',
+    color: '#568c76',
+    lineHeight: '1.6',
+    marginBottom: '20px',
+  },
+  btnPill: {
+    backgroundColor: '#568c76',
+    color: 'white',
+    border: 'none',
+    padding: '8px 20px',
+    borderRadius: '50px',
+    width: 'fit-content',
+    fontSize: '0.8rem',
+    cursor: 'pointer',
+    marginTop: 'auto',
+  },
+
+  // FOOTER
+  footer: {
+    background: '#2d4f43',
+    color: 'white',
+    textAlign: 'center',
+    padding: '80px 20px',
+  },
+  btnWhite: {
+    backgroundColor: '#ffffff',
+    color: '#2d4f43',
+    padding: '14px 40px',
+    borderRadius: '8px',
+    textDecoration: 'none',
+    fontWeight: '700',
+    border: 'none',
+    cursor: 'pointer',
+  }
+};
+
+export default LandingPage;

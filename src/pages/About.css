@@ -27,7 +27,7 @@
 }
 
 .about-header h1 span {
-  color: #007acc;
+  color: #154433;
 }
 
 .about-header p {
@@ -59,7 +59,7 @@
   content: "";
   width: 60px;
   height: 4px;
-  background: #007acc;
+  background: #194435;
   border-radius: 2px;
   display: block;
   margin: 8px auto 0;
@@ -108,7 +108,7 @@
 .mv-card h3 {
   font-size: 1.4rem;
   margin-bottom: 12px;
-  color: #007acc;
+  color: #2d4f43;
 }
 
 .mv-card p {
@@ -130,7 +130,7 @@
 }
 
 .value-list li:hover {
-  color: #007acc;
+  color: #2d4f43;
 }
 
 /* ------------ TEAM SECTION ------------ */
@@ -160,7 +160,7 @@
 }
 
 .team-card h3 {
-  color: #007acc;
+  color: #2d4f43;
   margin-bottom: 10px;
   font-size: 1.3rem;
 }

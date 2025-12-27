@@ -1,21 +1,21 @@
    
         .admin-wrap { display:flex; min-height:100vh; font-family:Inter, system-ui, Arial; color:#111; }
-        .admin-sidebar { width:240px; background:#a1bdeb; color:#252323; padding:20px; box-shadow:2px 0 8px rgba(0,0,0,0.12); }
+        .admin-sidebar { width:240px; background:#497063; color:#252323; padding:20px; box-shadow:2px 0 8px rgba(0,0,0,0.12); }
         .admin-sidebar h2 { margin:0 0 14px; font-size:20px; }
         .admin-sidebar nav { display:flex; flex-direction:column; gap:6px; }
         .tab-btn { text-align:left; padding:10px 12px; background:transparent; color:#242527; border:0; cursor:pointer; border-radius:6px; font-size:15px; }
-        .tab-btn:hover { background:#3895f3; color:#fff; }
+        .tab-btn:hover { background:#2d4f43; color:#fff; }
         .tab-btn.active { background:#c8d5eb; color:#fff; font-weight:600; }
 
         .admin-maincontent { flex:1; padding:28px; background: linear-gradient(180deg,#f8fafc,#fff); margin-top: 80px; }
 
         h1 { margin:0 0 18px; font-size:24px; }
         .cards { display:flex; gap:16px; margin-top:14px; flex-wrap:wrap; }
-        .card { background:#82a4ec; color:#fff; padding:18px; border-radius:8px; min-width:140px; }
+        .card { background:#2d4f43; color:#fff; padding:18px; border-radius:8px; min-width:140px; }
         .admin-table { width:100%; border-collapse:collapse; margin-top:12px; }
         .admin-table th, .admin-table td { border:1px solid #e6edf3; padding:10px 12px; text-align:left; }
         .actions button { margin-right:6px; }
-        .edit, .save { background:#2563eb; color:#fff; border:0; padding:6px 8px; border-radius:6px; cursor:pointer; }
+        .edit, .save { background:#2d4f43; color:#fff; border:0; padding:6px 8px; border-radius:6px; cursor:pointer; }
         .delete, .cancel { background:#ef4444; color:#fff; border:0; padding:6px 8px; border-radius:6px; cursor:pointer; }
         .save { background:#10b981; }
         .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:end; max-width:720px; }

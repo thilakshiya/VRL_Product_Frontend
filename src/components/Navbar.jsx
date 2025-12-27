@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import Logo01 from "../assets/logo01.png";
+import Logo01 from "../assets/Black Simple Farmhouse Cow Logo (1).png";
 import "./Navbar.css";
 
 // --- Icons (Feather Icons Style) ---
